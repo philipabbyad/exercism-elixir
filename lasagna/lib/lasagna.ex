@@ -15,6 +15,9 @@ defmodule Lasagna do
   end
 
   # Please define the 'total_time_in_minutes/2' function
+  def total_time_in_minutes(num_layers, minutes) do
+    preparation_time_in_minutes(num_layers) + minutes
+  end
 
   # Please define the 'alarm/0' function
 end
