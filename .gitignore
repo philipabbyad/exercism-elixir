@@ -1,3 +1,11 @@
+#VScode
+.vscode/
+**/bin/
+
+#exercism
+.exercism/
+
+#elixir github gitignore template:
 /_build
 /cover
 /deps
