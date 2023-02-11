@@ -24,7 +24,7 @@ defmodule Secrets do
   end
 
   def secret_xor(secret) do
-    # Please implement the secret_xor/1 function
+    fn number -> Bitwise.bxor(number, secret) end
   end
 
   def secret_combine(secret_function1, secret_function2) do
