@@ -20,7 +20,7 @@ defmodule Secrets do
   end
 
   def secret_and(secret) do
-    # Please implement the secret_and/1 function
+    fn number -> Bitwise.band(number, secret) end
   end
 
   def secret_xor(secret) do
