@@ -16,6 +16,15 @@ defmodule LogLevel do
   end
 
   def alert_recipient(level, legacy?) do
-    # Please implement the alert_recipient/2 function
+    log_label = to_label(level, legacy?)
+    cond do
+      log_label == :error or log_label == :fatal -> :ops
+      log_label == :unknown ->
+        cond do
+          legacy? -> :dev1
+          not legacy? -> :dev2
+        end
+      true -> false
+    end
   end
 end
