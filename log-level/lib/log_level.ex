@@ -1,16 +1,12 @@
 defmodule LogLevel do
   def to_label(level, legacy?) do
     cond do
-      level == 0 or level == 5 ->
-        cond do
-          legacy? -> :unknown
-          level == 0 -> :trace
-          level == 5 -> :fatal
-        end
+      level == 0 and not legacy? -> :trace
       level == 1 -> :debug
       level == 2 -> :info
       level == 3 -> :warning
       level == 4 -> :error
+      level == 5 and not legacy? -> :fatal
       true -> :unknown
     end
   end
@@ -19,11 +15,8 @@ defmodule LogLevel do
     log_label = to_label(level, legacy?)
     cond do
       log_label == :error or log_label == :fatal -> :ops
-      log_label == :unknown ->
-        cond do
-          legacy? -> :dev1
-          not legacy? -> :dev2
-        end
+      log_label == :unknown and legacy? -> :dev1
+      log_label == :unknown and not legacy? -> :dev2
       true -> false
     end
   end
